@@ -4,15 +4,15 @@ import { usePlane } from '@react-three/cannon';
 
 export function Plane(props) {
     const [plane] = useLoader(TextureLoader, ['/img/plane.gif']);
-
-    const [ref] = usePlane(() => ({
+    const [mesh] = usePlane(() => ({
+        args: [200, 200],
         rotation: [-Math.PI / 2, 0, 0],
         ...props,
     }));
 
     return (
-        <mesh ref={ref}>
-            <planeGeometry args={[100, 100]} />
+        <mesh ref={mesh}>
+            <planeGeometry args={[200, 200]} />
             <meshStandardMaterial map={plane} />
         </mesh>
     );
