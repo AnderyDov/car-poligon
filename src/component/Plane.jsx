@@ -11,7 +11,7 @@ export function Plane(props) {
     }));
 
     return (
-        <mesh ref={mesh}>
+        <mesh receiveShadow castShadow ref={mesh}>
             <planeGeometry args={[200, 200]} />
             <meshStandardMaterial map={plane} />
         </mesh>

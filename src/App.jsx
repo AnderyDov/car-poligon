@@ -1,14 +1,8 @@
 import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import { Plane, Box, Sphere } from './component';
-import {
-    AccumulativeShadows,
-    RandomizedLight,
-    Center,
-    Environment,
-    OrbitControls,
-} from '@react-three/drei';
+import { Plane, Box, Sphere, Model } from './component';
+import { Environment, OrbitControls } from '@react-three/drei';
 
 export default function App() {
     const [keyPressed, setKeysPressed] = useState({});
@@ -23,33 +17,26 @@ export default function App() {
     return (
         <Suspense fallback={null}>
             <Canvas
+                shadows
                 camera={{ position: [-20, 45, 35], fov: 135 }}
                 id='three-canvas-container'
             >
                 <Physics gravity={[0, -10, 0]}>
-                    {/* <ambientLight /> */}
-                    {/* <pointLight position={[10, 10, 10]} /> */}
-                    <AccumulativeShadows
-                        temporal
-                        frames={200}
-                        color='purple'
-                        colorBlend={0.5}
-                        opacity={1}
-                        scale={10}
-                        alphaTest={0.85}
+                    <directionalLight
+                        color='white'
+                        position={[0, 50, 50]}
+                        intensity={1}
+                        shadow-mapSize={1204}
+                        castShadow
                     >
-                        <RandomizedLight
-                            amount={8}
-                            radius={5}
-                            ambient={0.5}
-                            position={[5, 3, 2]}
-                            bias={0.001}
-                        />
-                    </AccumulativeShadows>
+                        {/* <orthographicCamera
+                            attach='shadow-camera'
+                            args={[-100, 100, -10, 0, 0, 30]}
+                        /> */}
+                    </directionalLight>
                     <OrbitControls />
                     <Environment preset={'forest'} background />
                     <Sphere
-                        castShadow
                         position={[0, 25, -2]}
                         keyPressed={keyPressed}
                         power={6}
@@ -62,7 +49,7 @@ export default function App() {
                     <Box position={[0, 8, -30]} />
                     <Box position={[0, 21, -15]} />
                     <Box position={[0, 21, -30]} />
-                    <Plane position={[0, 0, -1]} castShadow />
+                    <Plane position={[0, 0, -1]} />
                 </Physics>
             </Canvas>
         </Suspense>

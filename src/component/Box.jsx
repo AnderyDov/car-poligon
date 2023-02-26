@@ -11,7 +11,7 @@ export function Box(props) {
     );
 
     return (
-        <mesh {...props} ref={mesh}>
+        <mesh receiveShadow castShadow {...props} ref={mesh}>
             <boxGeometry args={[12, 12, 12]} />
             <meshStandardMaterial map={box} />
         </mesh>

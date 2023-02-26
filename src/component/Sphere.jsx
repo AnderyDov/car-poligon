@@ -4,9 +4,12 @@ import { useLoader, useFrame } from '@react-three/fiber';
 import { useSphere } from '@react-three/cannon';
 
 export function Sphere(props) {
-    const [box] = useLoader(TextureLoader, ['/img/box.gif']);
     const [mesh, api] = useSphere(
-        () => ({ args: [4, 4, 4], mass: 0.1, ...props }),
+        () => ({
+            args: [5, 64, 64],
+            mass: 0.1,
+            ...props,
+        }),
         useRef(null),
     );
 
@@ -46,9 +49,9 @@ export function Sphere(props) {
         }
     });
     return (
-        <mesh {...props} ref={mesh}>
+        <mesh receiveShadow castShadow {...props} ref={mesh}>
             <sphereGeometry args={[5, 64, 64]} />
-            <meshStandardMaterial roughness={1} />
+            <meshStandardMaterial roughness={0} />
         </mesh>
     );
 }
