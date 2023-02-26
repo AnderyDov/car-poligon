@@ -36,10 +36,16 @@ export default function App() {
                     </directionalLight>
                     <OrbitControls />
                     <Environment preset={'forest'} background />
-                    <Sphere
-                        position={[0, 25, -2]}
+                    {/* <Sphere
+                        position={[0, 50, 50]}
                         keyPressed={keyPressed}
-                        power={6}
+                        power={40}
+                    /> */}
+                    <Model
+                        scale={40}
+                        position={[0, 1, 30]}
+                        keyPressed={keyPressed}
+                        power={40}
                     />
                     <Box position={[-15, 8, 0]} />
                     <Box position={[-30, 8, 0]} />

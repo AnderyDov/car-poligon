@@ -7,7 +7,7 @@ export function Sphere(props) {
     const [mesh, api] = useSphere(
         () => ({
             args: [5, 64, 64],
-            mass: 0.1,
+            mass: 0.5,
             ...props,
         }),
         useRef(null),
