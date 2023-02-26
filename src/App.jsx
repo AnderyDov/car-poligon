@@ -2,7 +2,7 @@ import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Plane, Box, Sphere, Model } from './component';
-import { Environment, OrbitControls } from '@react-three/drei';
+import { Environment, OrbitControls, Sky, Stars } from '@react-three/drei';
 
 export default function App() {
     const [keyPressed, setKeysPressed] = useState({});
@@ -22,20 +22,35 @@ export default function App() {
                 id='three-canvas-container'
             >
                 <Physics gravity={[0, -10, 0]}>
-                    <directionalLight
+                    {/* <directionalLight
                         color='white'
                         position={[0, 50, 50]}
-                        intensity={1}
+                        intensity={0.3}
                         shadow-mapSize={1204}
                         castShadow
                     >
-                        {/* <orthographicCamera
+                        <orthographicCamera
                             attach='shadow-camera'
                             args={[-100, 100, -10, 0, 0, 30]}
-                        /> */}
-                    </directionalLight>
+                        />
+                    </directionalLight> */}
                     <OrbitControls />
                     <Environment preset={'forest'} background />
+                    <Sky
+                        sunPosition={[1000, -36, 100]}
+                        inclination={-5}
+                        azimuth={0.4}
+                    />
+
+                    <Stars
+                        radius={200}
+                        depth={150}
+                        count={5000}
+                        factor={4}
+                        saturation={4}
+                        fade
+                        speed={3}
+                    />
                     {/* <Sphere
                         position={[0, 50, 50]}
                         keyPressed={keyPressed}

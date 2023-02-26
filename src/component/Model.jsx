@@ -2,6 +2,7 @@ import { useBox } from '@react-three/cannon';
 import { useLoader, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useRef, useState } from 'react';
+import { Trail } from '@react-three/drei';
 
 export const Model = (props, ttt) => {
     const gltf = useLoader(GLTFLoader, '/img/Car2.glb');
@@ -10,6 +11,10 @@ export const Model = (props, ttt) => {
         () => ({ args: [20, 2, 20], mass: 1, ...props }),
         useRef(null),
     );
+
+    // useFrame(() => {
+    //     mesh.current.position.setPoints(mesh.current);
+    // });
 
     useFrame((state, delta) => {
         if (props.keyPressed.ArrowUp && props.keyPressed.ArrowLeft) {
@@ -56,11 +61,23 @@ export const Model = (props, ttt) => {
     });
 
     return (
-        <primitive
-            args={[20, 2, 20]}
-            ref={mesh}
-            object={gltf.scene}
-            {...props}
-        />
+        <Trail
+            width={0.2} // Width of the line
+            color={'hotpink'} // Color of the line
+            length={1} // Length of the line
+            decay={1} // How fast the line fades away
+            local={false} // Wether to use the target's world or local positions
+            stride={0} // Min distance between previous and current point
+            interval={1} // Number of frames to wait before next calculation
+            target={mesh} // Optional target. This object will produce the trail.
+            attenuation={(width) => width} // A function to define the width in each point along it.
+        >
+            <primitive
+                args={[20, 2, 20]}
+                ref={mesh}
+                object={gltf.scene}
+                {...props}
+            />
+        </Trail>
     );
 };
