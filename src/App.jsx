@@ -1,8 +1,9 @@
 import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import { Plane, Box, Sphere, Model } from './component';
+import { Plane, Box, Sphere, Model, Panel } from './component';
 import { Environment, OrbitControls, Sky, Stars } from '@react-three/drei';
+import { Loader } from './helpers/Loader';
 
 export default function App() {
     const [keyPressed, setKeysPressed] = useState({});
@@ -15,33 +16,20 @@ export default function App() {
     };
 
     return (
-        <Suspense fallback={null}>
-            <Canvas
-                shadows
-                camera={{ position: [-20, 45, 35], fov: 135 }}
-                id='three-canvas-container'
-            >
+        <Canvas
+            shadows
+            frameloop='demand'
+            camera={{ position: [-20, 45, 35], fov: 135 }}
+            id='three-canvas-container'
+        >
+            <Suspense fallback={<Loader />}>
                 <Physics gravity={[0, -10, 0]}>
-                    {/* <directionalLight
-                        color='white'
-                        position={[0, 50, 50]}
-                        intensity={0.3}
-                        shadow-mapSize={1204}
-                        castShadow
-                    >
-                        <orthographicCamera
-                            attach='shadow-camera'
-                            args={[-100, 100, -10, 0, 0, 30]}
-                        />
-                    </directionalLight> */}
-                    <OrbitControls />
-                    <Environment preset={'forest'} background />
+                    {/* <Panel /> */}
                     <Sky
                         sunPosition={[1000, -36, 100]}
                         inclination={-5}
                         azimuth={0.4}
                     />
-
                     <Stars
                         radius={200}
                         depth={150}
@@ -51,11 +39,7 @@ export default function App() {
                         fade
                         speed={3}
                     />
-                    {/* <Sphere
-                        position={[0, 50, 50]}
-                        keyPressed={keyPressed}
-                        power={40}
-                    /> */}
+                    <Sphere position={[50, 50, 10]} />
                     <Model
                         scale={40}
                         position={[0, 1, 30]}
@@ -71,8 +55,10 @@ export default function App() {
                     <Box position={[0, 21, -15]} />
                     <Box position={[0, 21, -30]} />
                     <Plane position={[0, 0, -1]} />
+                    <Environment preset={'forest'} background />
+                    <OrbitControls makeDefault />
                 </Physics>
-            </Canvas>
-        </Suspense>
+            </Suspense>
+        </Canvas>
     );
 }

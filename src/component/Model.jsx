@@ -20,7 +20,7 @@ export const Model = (props, ttt) => {
                 x: v.x + 2 * -Math.sin(r.y),
             });
             api.position.set(v.x, v.y, v.z);
-            setR({ ...r, y: r.y + Math.PI / 45 });
+            setR({ ...r, y: r.y + Math.PI /30 });
             api.rotation.set(0, r.y, 0);
             return;
         }
@@ -31,7 +31,7 @@ export const Model = (props, ttt) => {
                 x: v.x + 2 * -Math.sin(r.y),
             });
             api.position.set(v.x, v.y, v.z);
-            setR({ ...r, y: r.y - Math.PI / 45 });
+            setR({ ...r, y: r.y - Math.PI /30 });
             api.rotation.set(0, r.y, 0);
             return;
         }
@@ -42,7 +42,7 @@ export const Model = (props, ttt) => {
                 x: v.x - 2 * -Math.sin(r.y),
             });
             api.position.set(v.x, v.y, v.z);
-            setR({ ...r, y: r.y - Math.PI / 45 });
+            setR({ ...r, y: r.y - Math.PI /30 });
             api.rotation.set(0, r.y, 0);
             return;
         }
@@ -53,7 +53,7 @@ export const Model = (props, ttt) => {
                 x: v.x - 2 * -Math.sin(r.y),
             });
             api.position.set(v.x, v.y, v.z);
-            setR({ ...r, y: r.y + Math.PI / 45 });
+            setR({ ...r, y: r.y + Math.PI /30 });
             api.rotation.set(0, r.y, 0);
 
             return;
@@ -69,7 +69,7 @@ export const Model = (props, ttt) => {
             return;
         }
         if (props.keyPressed.ArrowLeft) {
-            setR({ ...r, y: r.y + Math.PI / 45 });
+            setR({ ...r, y: r.y + Math.PI /30 });
             api.rotation.set(0, r.y, 0);
             return;
         }
@@ -83,7 +83,7 @@ export const Model = (props, ttt) => {
             return;
         }
         if (props.keyPressed.ArrowRight) {
-            setR({ ...r, y: r.y - Math.PI / 45 });
+            setR({ ...r, y: r.y - Math.PI /30 });
             api.rotation.set(0, r.y, 0);
             return;
         }
