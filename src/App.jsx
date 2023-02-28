@@ -19,12 +19,23 @@ export default function App() {
         <Canvas
             shadows
             frameloop='demand'
-            camera={{ position: [-20, 45, 35], fov: 135 }}
+            camera={{ position: [-20, 45, 35] }}
             id='three-canvas-container'
         >
             <Suspense fallback={<Loader />}>
                 <Physics gravity={[0, -10, 0]}>
-                    {/* <Panel /> */}
+                    <ambientLight intensity={0.2} />
+                    <directionalLight
+                        castShadow
+                        position={[500, 500, 500]}
+                        shadow-mapSize={[1024, 1024]}
+                        intensity={1}
+                    >
+                        <orthographicCamera
+                            attach='shadow-camera'
+                            args={[-100, 100, 100, -100]}
+                        />
+                    </directionalLight>
                     <Sky
                         sunPosition={[1000, -36, 100]}
                         inclination={-5}
@@ -55,7 +66,7 @@ export default function App() {
                     <Box position={[0, 21, -15]} />
                     <Box position={[0, 21, -30]} />
                     <Plane position={[0, 0, -1]} />
-                    <Environment preset={'forest'} background />
+                    {/* <Environment preset={'forest'} background /> */}
                     <OrbitControls makeDefault />
                 </Physics>
             </Suspense>
