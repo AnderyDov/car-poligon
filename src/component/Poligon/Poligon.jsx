@@ -11,10 +11,11 @@ import {
 } from '@react-three/drei';
 import { Loader } from '../../helpers/Loader';
 import { useRecoilValue } from 'recoil';
-import { gridState } from '../../store/atoms';
+import { gridState, sunState } from '../../store/atoms';
 
 export function Poligon() {
     const grid = useRecoilValue(gridState);
+    const sun = useRecoilValue(sunState);
     const [keyPressed, setKeysPressed] = useState({});
 
     window.onkeydown = (e) => {
@@ -32,37 +33,41 @@ export function Poligon() {
             id='three-canvas-container'
         >
             <Suspense fallback={<Loader />}>
-                <ambientLight intensity={0.001} />
-                {/* <directionalLight
+                {/* {sun && <ambientLight intensity={0.3} />} */}
+
+                <directionalLight
                     castShadow
                     position={[500, 500, 500]}
                     shadow-mapSize={[1024, 1024]}
-                    intensity={1}
+                    intensity={0.4}
                 >
                     <orthographicCamera
                         attach='shadow-camera'
                         args={[-100, 100, 100, -100]}
                     />
-                </directionalLight> */}
+                </directionalLight>
                 <Sky
-                    sunPosition={[1000, -36, 100]}
+                    sunPosition={[1000, sun ? 400 : -36, 100]}
                     inclination={-5}
                     azimuth={0.4}
                 />
-                <Stars
-                    radius={200}
-                    depth={150}
-                    count={5000}
-                    factor={4}
-                    saturation={4}
-                    fade
-                    speed={3}
-                />
+                {!sun && (
+                    <Stars
+                        radius={200}
+                        depth={150}
+                        count={5000}
+                        factor={4}
+                        saturation={4}
+                        fade
+                        speed={3}
+                    />
+                )}
+
                 <Physics gravity={[0, -10, 0]}>
                     <Sphere position={[50, 50, 10]} />
                     <Model
                         scale={40}
-                        position={[0, 1, 30]}
+                        position={[0, 23, 30]}
                         keyPressed={keyPressed}
                         power={40}
                     />
