@@ -4,4 +4,5 @@ export * from './Model';
 export * from './Sphere';
 export * from './Wheel';
 export * from './Environment';
-export * from './Panel';
+export * from './Panel/Panel';
+export * from './Poligon/Poligon';

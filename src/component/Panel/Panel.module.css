@@ -1,0 +1,11 @@
+.panel {
+    background: rgb(0, 0, 0);
+    width: 20%;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.panel span {
+    line-height: 22px;
+}
