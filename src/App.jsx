@@ -2,7 +2,13 @@ import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Plane, Box, Sphere, Model, Panel } from './component';
-import { Environment, OrbitControls, Sky, Stars } from '@react-three/drei';
+import {
+    Environment,
+    OrbitControls,
+    Sky,
+    Stars,
+    Grid,
+} from '@react-three/drei';
 import { Loader } from './helpers/Loader';
 
 export default function App() {
@@ -65,7 +71,12 @@ export default function App() {
                     <Box position={[0, 8, -30]} />
                     <Box position={[0, 21, -15]} />
                     <Box position={[0, 21, -30]} />
-                    <Plane position={[0, 0, -1]} />
+                    <Grid
+                        position={[0, 0.01, 0]}
+                        cellSize={10}
+                        args={[1000, 1000]}
+                    />
+                    {/* <Plane position={[0, 0, -1]} /> */}
                     {/* <Environment preset={'forest'} background /> */}
                     <OrbitControls makeDefault />
                 </Physics>
