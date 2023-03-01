@@ -13,8 +13,10 @@
     "@react-three/drei": "^9.56.27",
     "@react-three/fiber": "^8.11.5",
     "@types/three": "^0.149.0",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "recoil": "^0.7.6",
     "three": "^0.150.0"
   },
   "devDependencies": {

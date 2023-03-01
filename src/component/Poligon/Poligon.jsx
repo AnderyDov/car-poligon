@@ -10,9 +10,11 @@ import {
     Grid,
 } from '@react-three/drei';
 import { Loader } from '../../helpers/Loader';
+import { useRecoilValue } from 'recoil';
+import { gridState } from '../../store/atoms';
 
 export function Poligon() {
-    const [grid, setGrid] = useState(true);
+    const grid = useRecoilValue(gridState);
     const [keyPressed, setKeysPressed] = useState({});
 
     window.onkeydown = (e) => {
