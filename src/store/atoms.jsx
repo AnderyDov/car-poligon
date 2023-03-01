@@ -7,5 +7,10 @@ export const gridState = atom({
 
 export const sunState = atom({
     key: 'sunState',
+    default: false,
+});
+
+export const panelState = atom({
+    key: 'panelState',
     default: true,
 });

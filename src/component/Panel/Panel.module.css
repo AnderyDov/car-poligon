@@ -1,11 +1,22 @@
 .panel {
-    background: rgb(0, 0, 0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #000000;
     width: 20%;
-    background: var(--bg);
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.436);
     display: flex;
     flex-direction: column;
     padding: 20px;
+    transition: all 0.4s ease;
+    scale: 0 1;
+    transform-origin: right;
+    backdrop-filter: blur(40px);
 }
 .panel span {
     line-height: 22px;
+}
+.open {
+    scale: 1;
 }

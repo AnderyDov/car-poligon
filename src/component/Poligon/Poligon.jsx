@@ -39,7 +39,7 @@ export function Poligon() {
                     castShadow
                     position={[500, 500, 500]}
                     shadow-mapSize={[1024, 1024]}
-                    intensity={0.4}
+                    intensity={sun ? 0.4 : 0.2}
                 >
                     <orthographicCamera
                         attach='shadow-camera'
