@@ -72,11 +72,11 @@ export default function App() {
                     <Box position={[0, 21, -15]} />
                     <Box position={[0, 21, -30]} />
                     <Grid
-                        position={[0, 0.01, 0]}
+                        position={[0, 0.1, 0]}
                         cellSize={10}
                         args={[1000, 1000]}
                     />
-                    {/* <Plane position={[0, 0, -1]} /> */}
+                    <Plane position={[0, 0, 0]} />
                     {/* <Environment preset={'forest'} background /> */}
                     <OrbitControls makeDefault />
                 </Physics>
